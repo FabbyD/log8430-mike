@@ -1,17 +1,13 @@
-package minidraw.demo.multiview.ss;
+package minidraw.framework.DrawingEditor.ss;
 
 import java.awt.Point;
 
 import javax.swing.*;
 
 import minidraw.framework.*;
-import minidraw.framework.DrawingEditor.ss.DrawingEditor;
-import minidraw.framework.DrawingEditor.ss.DrawingView;
-import minidraw.framework.DrawingEditor.ss.ImageFigure;
-import minidraw.framework.DrawingEditor.ss.SelectionTool;
+import minidraw.framework.Factory.ss.ChessBackgroundFactory;
 import minidraw.framework.Factory.ss.Factory;
 import minidraw.framework.Factory.ss.MiniDrawApplication;
-import minidraw.framework.Factory.ss.ChessBackgroundFactory;
 import minidraw.framework.Figure.ss.Figure;
 import minidraw.standard.*;
 
