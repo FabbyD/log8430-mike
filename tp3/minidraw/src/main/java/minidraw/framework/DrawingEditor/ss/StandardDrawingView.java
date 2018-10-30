@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import minidraw.framework.*;
 import minidraw.framework.Figure.ss.Figure;
 import minidraw.standard.handlers.StandardDrawingChangeListenerHandler.ss.DrawingChangeEvent;
+import minidraw.standard.handlers.StandardDrawingChangeListenerHandler.ss.StandardDrawingChangeListenerHandlerFacade;
 
 /**
  * Standard implementation of the DrawingView role in MiniDraw, just giving an
@@ -274,9 +275,10 @@ public class StandardDrawingView extends JPanel
     editor.tool().keyDown(e, e.getKeyCode());
   }
 
-  @Override
   public void drawingInvalidated(DrawingChangeEvent e) {
-    Rectangle r = e.getInvalidatedRectangle();
+	  StandardDrawingChangeListenerHandlerFacade e2= new StandardDrawingChangeListenerHandlerFacade();
+	  e2.DrawingChangeEvent(e);
+    Rectangle r = e2.getInvalidatedRectangle();
     if (dirtyRectangle == null) {
       dirtyRectangle = r;
     } else {

@@ -9,6 +9,7 @@ import minidraw.framework.Figure.ss.SelectionHandler;
 import minidraw.standard.handlers.*;
 import minidraw.standard.handlers.StandardDrawingChangeListenerHandler.ss.DrawingChangeListener;
 import minidraw.standard.handlers.StandardDrawingChangeListenerHandler.ss.StandardDrawingChangeListenerHandler;
+import minidraw.standard.handlers.StandardDrawingChangeListenerHandler.ss.StandardDrawingChangeListenerHandlerFacade;
 
 /** Standard implementation of the drawing role. */
 
@@ -21,11 +22,11 @@ public class StandardDrawing extends CompositeFigure implements Drawing {
    * use a StandardDrawingChangeListenerHandler to handle all observer pattern
    * subject role behaviour
    */
-  protected StandardDrawingChangeListenerHandler listenerHandler;
+  protected StandardDrawingChangeListenerHandlerFacade listenerHandler;
 
   public StandardDrawing() {
     selectionHandler = new StandardSelectionHandler();
-    listenerHandler = new StandardDrawingChangeListenerHandler();
+    listenerHandler =new StandardDrawingChangeListenerHandlerFacade();
   }
 
   // === Delegation methods for the DrawingChangeListeners

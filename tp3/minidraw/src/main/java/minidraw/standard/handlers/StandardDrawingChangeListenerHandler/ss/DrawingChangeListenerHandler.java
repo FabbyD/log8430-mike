@@ -14,7 +14,7 @@ public interface DrawingChangeListenerHandler {
    * @param listener
    *          the listener to add to this handler
    */
-  public void addDrawingChangeListener(DrawingChangeListener listener);
+  void addDrawingChangeListener(DrawingChangeListener listener);
 
   /**
    * Removes a listener from this drawing.
@@ -22,5 +22,5 @@ public interface DrawingChangeListenerHandler {
    * @param listener
    *          the listener to remove from this handler
    */
-  public void removeDrawingChangeListener(DrawingChangeListener listener);
+  void removeDrawingChangeListener(DrawingChangeListener listener);
 }

@@ -24,7 +24,7 @@ public class DrawingChangeEvent extends EventObject {
    * @param r
    *          the rectangle that needs to be redrawn
    */
-  public DrawingChangeEvent(Drawing source, Rectangle r) {
+  DrawingChangeEvent(Drawing source, Rectangle r) {
     super(source);
     fRectangle = r;
   }
@@ -34,7 +34,7 @@ public class DrawingChangeEvent extends EventObject {
    *
    * @return a reference to the changed drawing
    */
-  public Drawing getDrawing() {
+  Drawing getDrawing() {
     return (Drawing) getSource();
   }
 
@@ -43,7 +43,7 @@ public class DrawingChangeEvent extends EventObject {
    *
    * @return the rectangle that needs to be redrawn
    */
-  public Rectangle getInvalidatedRectangle() {
+  Rectangle getInvalidatedRectangle() {
     return fRectangle;
   }
 }

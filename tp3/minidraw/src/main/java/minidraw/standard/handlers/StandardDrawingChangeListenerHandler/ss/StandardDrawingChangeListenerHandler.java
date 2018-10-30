@@ -21,7 +21,7 @@ public class StandardDrawingChangeListenerHandler
   /** list over all associated listeners */
   protected List<DrawingChangeListener> fListeners;
 
-  public StandardDrawingChangeListenerHandler() {
+  StandardDrawingChangeListenerHandler() {
     fListeners = new ArrayList<DrawingChangeListener>();
   }
 
@@ -32,7 +32,8 @@ public class StandardDrawingChangeListenerHandler
    *          the listener to add
    */
   @Override
-  public void addDrawingChangeListener(DrawingChangeListener listener) {
+public
+  void addDrawingChangeListener(DrawingChangeListener listener) {
     fListeners.add(listener);
   }
 
@@ -43,7 +44,8 @@ public class StandardDrawingChangeListenerHandler
    *          the listener to remove
    */
   @Override
-  public void removeDrawingChangeListener(DrawingChangeListener listener) {
+public
+  void removeDrawingChangeListener(DrawingChangeListener listener) {
     fListeners.remove(listener);
   }
 
@@ -54,7 +56,7 @@ public class StandardDrawingChangeListenerHandler
    *          the drawing this event stems from
    * @param r the rectangle in need of redrawing
    */
-  public void fireDrawingInvalidated(Drawing source, Rectangle r) {
+  void fireDrawingInvalidated(Drawing source, Rectangle r) {
     for (DrawingChangeListener l : fListeners) {
       l.drawingInvalidated(new DrawingChangeEvent(source, r));
     }
@@ -66,7 +68,7 @@ public class StandardDrawingChangeListenerHandler
    * @param source
    *          the drawing this event stems from
    */
-  public void fireDrawingRequestUpdate(Drawing source) {
+  void fireDrawingRequestUpdate(Drawing source) {
     for (DrawingChangeListener l : fListeners) {
       l.drawingRequestUpdate(new DrawingChangeEvent(source, null));
     }

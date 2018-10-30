@@ -14,7 +14,7 @@ public interface DrawingChangeListener extends EventListener {
    * @param e
    *          the event containing information about the change
    */
-  public void drawingInvalidated(DrawingChangeEvent e);
+  void drawingInvalidated(DrawingChangeEvent e);
 
   /**
    * Called when the drawing wants to be refreshed
@@ -22,5 +22,5 @@ public interface DrawingChangeListener extends EventListener {
    * @param e
    *          the event containing information about the change
    */
-  public void drawingRequestUpdate(DrawingChangeEvent e);
+  void drawingRequestUpdate(DrawingChangeEvent e);
 }
