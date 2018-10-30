@@ -8,7 +8,6 @@ import minidraw.framework.DrawingEditor.ss.DrawingView;
 import minidraw.framework.DrawingEditor.ss.StdViewWithBackground;
 import minidraw.framework.Factory.ss.Factory;
 import minidraw.framework.Factory.ss.FactoryFacade;
-import minidraw.standard.AbstractTool.ss.BoardActionTool;
 
 /**
  * Experimental stuff. Testing the 'boardgame' package within Minidraw.

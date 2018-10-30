@@ -2,13 +2,9 @@ package minidraw.framework.DrawingEditor.ss;
 
 import java.awt.event.MouseEvent;
 
-import minidraw.framework.*;
 import minidraw.framework.Figure.ss.Figure;
 import minidraw.standard.AbstractTool.ss.AbstractTool;
-import minidraw.standard.AbstractTool.ss.RubberBandSelectionStrategy;
-import minidraw.standard.AbstractTool.ss.SelectAreaTracker;
-import minidraw.standard.AbstractTool.ss.StandardRubberBandSelectionStrategy;
-import minidraw.standard.handlers.*;
+import minidraw.standard.AbstractTool.ss.AbstractToolFacade;
 
 /**
  * Selection tool: Uses a internal state pattern to define what type of tool to
@@ -36,7 +32,8 @@ public class SelectionTool extends AbstractTool implements Tool {
   protected Figure draggedFigure;
 
   /** the rubber band selection strategy to use. */
-  RubberBandSelectionStrategy selectionStrategy;
+  /*RubberBandSelectionStrategy selectionStrategy;*/
+  AbstractToolFacade facade;
 
   /**
    * create the selection tool
@@ -45,7 +42,7 @@ public class SelectionTool extends AbstractTool implements Tool {
    *          the editor the tool is associated with
    */
   public SelectionTool(DrawingEditor editor) {
-    this(editor, new StandardRubberBandSelectionStrategy());
+    this(editor, new AbstractToolFacade());
   }
 
   /**
@@ -58,11 +55,12 @@ public class SelectionTool extends AbstractTool implements Tool {
    *          the rubberband selection strategy to use
    */
   public SelectionTool(DrawingEditor editor,
-      RubberBandSelectionStrategy selectionStrategy) {
+      AbstractToolFacade facade) {
     super(editor);
     fChild = cachedNullTool = new NullTool();
     draggedFigure = null;
-    this.selectionStrategy = selectionStrategy;
+    this.facade = facade;
+    /*this.selectionStrategy = selectionStrategy;*/
   }
 
   /**
@@ -130,7 +128,7 @@ public class SelectionTool extends AbstractTool implements Tool {
    * @return the tool to allow dragging figures in an area
    */
   protected Tool createAreaTracker() {
-    return new SelectAreaTracker(editor(), selectionStrategy);
+    return facade.createSelectAreaTracker(editor());
   }
 
 }
