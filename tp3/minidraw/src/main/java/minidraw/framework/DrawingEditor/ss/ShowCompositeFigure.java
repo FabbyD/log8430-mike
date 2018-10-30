@@ -4,6 +4,7 @@ import java.awt.Point;
 
 import minidraw.framework.*;
 import minidraw.framework.Factory.ss.ChessBackgroundFactory;
+import minidraw.framework.Factory.ss.FactoryFacade;
 import minidraw.framework.Factory.ss.MiniDrawApplication;
 import minidraw.framework.Figure.ss.CompositeFigure;
 import minidraw.framework.Figure.ss.Figure;
@@ -17,8 +18,8 @@ import minidraw.standard.*;
 public class ShowCompositeFigure {
 
   public static void main(String[] args) {
-    DrawingEditor window = new MiniDrawApplication(
-        "CompositeFigure test: moves as a unit", new ChessBackgroundFactory());
+	FactoryFacade facade = new FactoryFacade(FactoryFacade.createChessBackGroundFactory());
+    DrawingEditor window = facade.createMiniDraw("CompositeFigure test: moves as a unit");
     window.open();
 
     Figure blackKing = new ImageFigure("bking",

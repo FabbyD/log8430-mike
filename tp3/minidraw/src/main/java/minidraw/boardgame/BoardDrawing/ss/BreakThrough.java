@@ -2,15 +2,12 @@ package minidraw.boardgame.BoardDrawing.ss;
 
 import javax.swing.JTextField;
 
-import minidraw.boardgame.*;
-import minidraw.framework.*;
 import minidraw.framework.DrawingEditor.ss.Drawing;
 import minidraw.framework.DrawingEditor.ss.DrawingEditor;
 import minidraw.framework.DrawingEditor.ss.DrawingView;
 import minidraw.framework.DrawingEditor.ss.StdViewWithBackground;
 import minidraw.framework.Factory.ss.Factory;
-import minidraw.framework.Factory.ss.MiniDrawApplication;
-import minidraw.standard.*;
+import minidraw.framework.Factory.ss.FactoryFacade;
 import minidraw.standard.AbstractTool.ss.BoardActionTool;
 
 /**
@@ -25,10 +22,11 @@ public class BreakThrough {
 
   public static void main(String[] args) {
     Game game = new GameStub();
-    DrawingEditor window = new MiniDrawApplication(
-        "Breakthrough Demo: (0,0) illegal", new BreakthroughFactory(game));
+    
+    FactoryFacade facade = new FactoryFacade(new BreakthroughFactory(game));
+    DrawingEditor window = facade.createMiniDraw("Breakthrough Demo: (0,0) illegal");
     window.open();
-
+    
     ((GameStub) game).addObserver((BoardDrawing<Position>) window.drawing());
     window.setTool(new BoardActionTool(window));
   }

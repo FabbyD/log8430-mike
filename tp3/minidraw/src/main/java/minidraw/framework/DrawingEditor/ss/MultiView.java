@@ -4,12 +4,8 @@ import java.awt.Point;
 
 import javax.swing.*;
 
-import minidraw.framework.*;
-import minidraw.framework.Factory.ss.ChessBackgroundFactory;
-import minidraw.framework.Factory.ss.Factory;
-import minidraw.framework.Factory.ss.MiniDrawApplication;
+import minidraw.framework.Factory.ss.FactoryFacade;
 import minidraw.framework.Figure.ss.Figure;
-import minidraw.standard.*;
 
 /**
  * Demonstrate multiple views.
@@ -18,8 +14,8 @@ import minidraw.standard.*;
 public class MultiView {
 
   public static void main(String[] args) {
-    Factory f = new ChessBackgroundFactory();
-    DrawingEditor editor = new MiniDrawApplication("Multi view", f);
+	FactoryFacade facade = new FactoryFacade(FactoryFacade.createChessBackGroundFactory());
+    DrawingEditor editor = facade.createMiniDraw("Multi view");
     editor.open();
 
     Figure blackKing = new ImageFigure("bking",
@@ -38,7 +34,7 @@ public class MultiView {
     newWindow.setLocation(620, 20);
     newWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-    DrawingView extraView = f.createDrawingView(editor);
+    DrawingView extraView = facade.createDrawingView(editor);
     JPanel panel = (JPanel) extraView;
     newWindow.getContentPane().add(panel);
     newWindow.pack();

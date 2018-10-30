@@ -2,11 +2,8 @@ package minidraw.framework.DrawingEditor.ss;
 
 import java.awt.Point;
 
-import minidraw.framework.*;
-import minidraw.framework.Factory.ss.ChessBackgroundFactory;
-import minidraw.framework.Factory.ss.MiniDrawApplication;
+import minidraw.framework.Factory.ss.FactoryFacade;
 import minidraw.framework.Figure.ss.Figure;
-import minidraw.standard.*;
 
 /**
  * Test that figures can be added to the drawing and that the selection tool
@@ -17,8 +14,8 @@ import minidraw.standard.*;
 public class ShowFigures {
 
   public static void main(String[] args) {
-    DrawingEditor editor = new MiniDrawApplication(
-        "Test: Figures appear; select tool works", new ChessBackgroundFactory());
+    FactoryFacade facade = new FactoryFacade(FactoryFacade.createChessBackGroundFactory());
+    DrawingEditor editor = facade.createMiniDraw("Test: Figures appear; select tool works");
     editor.open();
     Figure blackKing = new ImageFigure("bking",
         new Point(14 + 3 * 40, 14 + 0 * 40));

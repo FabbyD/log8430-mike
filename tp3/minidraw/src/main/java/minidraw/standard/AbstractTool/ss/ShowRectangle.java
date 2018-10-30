@@ -13,6 +13,7 @@ import minidraw.framework.DrawingEditor.ss.SelectionTool;
 import minidraw.framework.DrawingEditor.ss.StandardDrawingView;
 import minidraw.framework.DrawingEditor.ss.Tool;
 import minidraw.framework.Factory.ss.Factory;
+import minidraw.framework.Factory.ss.FactoryFacade;
 import minidraw.framework.Factory.ss.MiniDrawApplication;
 import minidraw.framework.Figure.ss.AbstractFigure;
 import minidraw.framework.Figure.ss.StandardDrawing;
@@ -27,9 +28,9 @@ import minidraw.standard.*;
 public class ShowRectangle {
 
   public static void main(String[] args) {
-    Factory f = new EmptyCanvasFactory();
-    DrawingEditor window = new MiniDrawApplication(
-        "Create and move rectangles - use the mouse", f);
+    FactoryFacade facade = new FactoryFacade(new EmptyCanvasFactory());
+    DrawingEditor window = facade.createMiniDraw(
+        "Create and move rectangles - use the mouse");
     Tool rectangleDrawTool = new RectangleTool(window),
         selectionTool = new SelectionTool(window);
     addToolSelectMenusToWindow(window, rectangleDrawTool, selectionTool);
@@ -42,7 +43,7 @@ public class ShowRectangle {
     newWindow.setLocation(620, 20);
     newWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-    DrawingView extraView = f.createDrawingView(window);
+    DrawingView extraView = facade.createDrawingView(window);
     JPanel panel = (JPanel) extraView;
     newWindow.getContentPane().add(panel);
     newWindow.pack();

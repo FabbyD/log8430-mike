@@ -4,11 +4,9 @@ import java.awt.Point;
 
 import javax.swing.JTextField;
 
-import minidraw.framework.*;
 import minidraw.framework.Factory.ss.Factory;
-import minidraw.framework.Factory.ss.MiniDrawApplication;
+import minidraw.framework.Factory.ss.FactoryFacade;
 import minidraw.framework.Figure.ss.StandardDrawing;
-import minidraw.standard.*;
 
 /**
  * A (very small) jigsaw puzzle on the Aarhus University Logo. A demonstration
@@ -18,8 +16,8 @@ import minidraw.standard.*;
 public class LogoPuzzle {
 
   public static void main(String[] args) {
-    DrawingEditor editor = new MiniDrawApplication("Put the pieces into place",
-        new PuzzleFactory());
+    FactoryFacade facade = new FactoryFacade(new PuzzleFactory());
+    DrawingEditor editor = facade.createMiniDraw("Put the pieces into place");
     editor.open();
     editor.setTool(new SelectionTool(editor));
 
