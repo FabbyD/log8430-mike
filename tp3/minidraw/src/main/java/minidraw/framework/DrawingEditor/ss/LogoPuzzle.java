@@ -6,7 +6,7 @@ import javax.swing.JTextField;
 
 import minidraw.framework.Factory.ss.Factory;
 import minidraw.framework.Factory.ss.FactoryFacade;
-import minidraw.framework.Figure.ss.StandardDrawing;
+import minidraw.framework.Figure.ss.FigureFacade;;
 
 /**
  * A (very small) jigsaw puzzle on the Aarhus University Logo. A demonstration
@@ -35,6 +35,7 @@ public class LogoPuzzle {
 }
 
 class PuzzleFactory implements Factory {
+  FigureFacade ffacade = new FigureFacade();
 
   @Override
   public DrawingView createDrawingView(DrawingEditor editor) {
@@ -44,7 +45,7 @@ class PuzzleFactory implements Factory {
 
   @Override
   public Drawing createDrawing(DrawingEditor editor) {
-    return new StandardDrawing();
+    return ffacade.createDrawing();
   }
 
   @Override
