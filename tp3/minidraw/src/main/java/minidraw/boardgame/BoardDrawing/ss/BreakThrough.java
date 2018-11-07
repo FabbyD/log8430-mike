@@ -9,6 +9,7 @@ import minidraw.framework.DrawingEditor.ss.DrawingEditor;
 //import minidraw.framework.DrawingEditor.ss.StdViewWithBackground;
 import minidraw.framework.Factory.ss.Factory;
 import minidraw.framework.Factory.ss.FactoryFacade;
+import minidraw.boardgame.BoardDrawing.ss.Game;
 
 /**
  * Experimental stuff. Testing the 'boardgame' package within Minidraw.
@@ -32,15 +33,6 @@ public class BreakThrough {
   }
 }
 
-public interface Game {
-  public static final int WHITE = +1;
-  public static final int NONE = 0;
-  public static final int BLACK = -1;
-
-  public boolean move(Position from, Position to);
-
-  public int get(Position p);
-}
 
 class GameStub implements Game {
   int[][] board = new int[8][8];
