@@ -5,8 +5,8 @@ import javax.swing.JTextField;
 import minidraw.framework.*;
 import minidraw.framework.DrawingEditor.ss.Drawing;
 import minidraw.framework.DrawingEditor.ss.DrawingEditor;
+import minidraw.framework.DrawingEditor.ss.DrawingEditorFacade;
 import minidraw.framework.DrawingEditor.ss.DrawingView;
-import minidraw.framework.DrawingEditor.ss.StdViewWithBackground;
 import minidraw.framework.Figure.ss.StandardDrawing;
 import minidraw.standard.*;
 
@@ -15,9 +15,13 @@ import minidraw.standard.*;
 
  */
 public class ChessBackgroundFactory implements Factory {
+
+	
+	private DrawingEditorFacade drawingFacade;
   @Override
   public DrawingView createDrawingView(DrawingEditor editor) {
-    DrawingView view = new StdViewWithBackground(editor, "chessboard");
+//    DrawingView view = new StdViewWithBackground(editor, "chessboard");
+	  DrawingView view = drawingFacade.createDrawingView(editor, "chessboard");
     return view;
   }
 

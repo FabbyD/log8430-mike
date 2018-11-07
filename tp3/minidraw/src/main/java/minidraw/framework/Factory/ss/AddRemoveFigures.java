@@ -3,12 +3,11 @@ package minidraw.framework.Factory.ss;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 
-import minidraw.framework.*;
 import minidraw.framework.DrawingEditor.ss.DrawingEditor;
+import minidraw.framework.DrawingEditor.ss.DrawingEditorFacade;
 import minidraw.framework.DrawingEditor.ss.ImageFigure;
 import minidraw.framework.DrawingEditor.ss.NullTool;
 import minidraw.framework.Figure.ss.Figure;
-import minidraw.standard.*;
 
 /**
  * Demonstrates how figures can be added and removed from the drawing and
@@ -29,6 +28,7 @@ public class AddRemoveFigures {
 class AddRemoveTool extends NullTool {
   private DrawingEditor editor;
   Figure[] list;
+  private DrawingEditorFacade drawingFacade;
 
   public AddRemoveTool(DrawingEditor e) {
     editor = e;
@@ -41,9 +41,11 @@ class AddRemoveTool extends NullTool {
   public void mouseUp(MouseEvent e, int x, int y) {
     System.out.println("MD: " + tick);
     if (tick < 6) {
-      list[tick] = new ImageFigure("bpawn",
-          new Point(14 + tick * 40, 14 + tick * 40));
-      editor.drawing().add(list[tick]);
+
+//      list[tick] = new ImageFigure("bpawn",
+//          new Point(14 + tick * 40, 14 + tick * 40));
+    	list[tick] = drawingFacade.createImageFigure(tick);
+    	editor.drawing().add(list[tick]);
     } else {
       editor.drawing().remove(list[tick - 6]);
     }

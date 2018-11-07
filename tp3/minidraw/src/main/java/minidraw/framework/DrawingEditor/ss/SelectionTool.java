@@ -1,7 +1,6 @@
 package minidraw.framework.DrawingEditor.ss;
 
 import java.awt.event.MouseEvent;
-
 import minidraw.framework.Figure.ss.Figure;
 import minidraw.standard.AbstractTool.ss.AbstractTool;
 import minidraw.standard.AbstractTool.ss.AbstractToolFacade;
@@ -34,6 +33,11 @@ public class SelectionTool extends AbstractTool implements Tool {
   /** the rubber band selection strategy to use. */
   /*RubberBandSelectionStrategy selectionStrategy;*/
   AbstractToolFacade facade;
+
+  /**
+   *  facade helping to create object of the package drawingEditor.ss
+   */
+  private DrawingEditorFacade drawingFacade;
 
   /**
    * create the selection tool
@@ -119,7 +123,9 @@ public class SelectionTool extends AbstractTool implements Tool {
    * @return the tool to drag it
    */
   protected Tool createDragTracker(Figure f) {
-    return new DragTracker(editor(), f);
+
+//    return new DragTracker(editor(), f);
+	  return drawingFacade.createDragTracker(editor(), f);
   }
 
   /**
