@@ -1,8 +1,13 @@
-package minidraw.boardgame.BoardDrawing.ss;
+package demo.breakthrough;
 
 import java.util.*;
 
 import minidraw.boardgame.*;
+import minidraw.boardgame.BoardDrawing.ss.BoardDrawingFacade;
+import minidraw.boardgame.BoardDrawing.ss.BoardFigure;
+import minidraw.boardgame.BoardDrawing.ss.Command;
+import minidraw.boardgame.BoardDrawing.ss.FigureFactory;
+import minidraw.framework.DrawingEditor.ss.DrawingEditorFacade;
 
 /**
  * The factory to generate all pieces.
@@ -10,9 +15,12 @@ import minidraw.boardgame.*;
 public class BreakthroughPieceFactory implements FigureFactory<Position> {
 
   private Game game;
+  
+  private BoardDrawingFacade boardDrawingFacade;
 
   public BreakthroughPieceFactory(Game game) {
     super();
+    this.boardDrawingFacade = new BoardDrawingFacade();
     this.game = game;
   }
 
@@ -23,11 +31,12 @@ public class BreakthroughPieceFactory implements FigureFactory<Position> {
       for (int col = 0; col < 8; col++) {
         int whatIsOnThisSquare = game.get(new Position(row, col));
         List<BoardFigure> l = new ArrayList<BoardFigure>();
-        if (whatIsOnThisSquare != minidraw.boardgame.BoardDrawing.ss.Game.NONE) {
-          String gifname = whatIsOnThisSquare == minidraw.boardgame.BoardDrawing.ss.Game.WHITE
+        if (whatIsOnThisSquare != Game.NONE) {
+          String gifname = whatIsOnThisSquare == Game.WHITE
               ? Constants.WHITE_PAWN_IMAGE_NAME
               : Constants.BLACK_PAWN_IMAGE_NAME;
-          l.add(new BoardFigure(gifname, true, new MoveCommand(game)));
+          BoardFigure bf = boardDrawingFacade.createBoardFigure(gifname, true, new MoveCommand(game));
+          l.add(bf);
         }
         m.put(new Position(row, col), l);
       }

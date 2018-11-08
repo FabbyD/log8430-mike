@@ -1,4 +1,4 @@
-package minidraw.boardgame.BoardDrawing.ss;
+package demo.breakthrough;
 
 /**
  * Position on the chess board.

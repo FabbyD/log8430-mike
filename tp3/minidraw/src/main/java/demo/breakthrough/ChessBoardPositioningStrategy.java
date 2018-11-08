@@ -1,6 +1,8 @@
-package minidraw.boardgame.BoardDrawing.ss;
+package demo.breakthrough;
 
 import java.awt.Point;
+
+import minidraw.boardgame.BoardDrawing.ss.PositioningStrategy;
 
 /**
  * The strategy for positioning chess pawns properly in the center of a square

@@ -1,4 +1,4 @@
-package minidraw.boardgame.BoardDrawing.ss;
+package demo.breakthrough;
 
 import javax.swing.JTextField;
 
@@ -6,9 +6,11 @@ import minidraw.framework.DrawingEditor.ss.DrawingEditorFacade;
 import minidraw.framework.DrawingEditor.ss.DrawingView;
 import minidraw.framework.DrawingEditor.ss.Drawing;
 import minidraw.framework.DrawingEditor.ss.DrawingEditor;
+import minidraw.boardgame.BoardDrawing.ss.BoardDrawingFacade;
+import minidraw.boardgame.BoardDrawing.ss.BoardGameObserver;
 import minidraw.framework.Factory.ss.Factory;
 import minidraw.framework.Factory.ss.FactoryFacade;
-import minidraw.boardgame.BoardDrawing.ss.Game;
+
 
 /**
  * Experimental stuff. Testing the 'boardgame' package within Minidraw.
@@ -27,11 +29,22 @@ public class BreakThrough {
     DrawingEditor window = facade.createMiniDraw("Breakthrough Demo: (0,0) illegal");
     window.open();
     
-    ((GameStub) game).addObserver((BoardDrawing<Position>) window.drawing());
-    window.setTool(new BoardActionTool(window));
+    BoardDrawingFacade boardDrawingFacade = new BoardDrawingFacade();
+    
+    ((GameStub) game).addObserver(boardDrawingFacade.getDrawing(window));
+    window.setTool(boardDrawingFacade.createActionTool(window));
   }
 }
 
+interface Game {
+		  public static final int WHITE = +1;
+		  public static final int NONE = 0;
+		  public static final int BLACK = -1;
+
+		  public boolean move(Position from, Position to);
+
+		  public int get(Position p);
+}
 
 class GameStub implements Game {
   int[][] board = new int[8][8];
@@ -66,15 +79,18 @@ class GameStub implements Game {
   }
 
   private BoardGameObserver<Position> observer;
+  
+  private BoardDrawingFacade boardDrawingFacade;
 
   public void addObserver(BoardGameObserver<Position> observer) {
+	  this.boardDrawingFacade = new BoardDrawingFacade();
     this.observer = observer;
   }
 }
 
 class BreakthroughFactory implements Factory {
   private Game game;
-  private DrawingEditorFacade drawingFacade;
+  private DrawingEditorFacade<Position> drawingFacade;
 
   public BreakthroughFactory(Game game) {
     super();
@@ -83,7 +99,9 @@ class BreakthroughFactory implements Factory {
 
   @Override
   public Drawing createDrawing(DrawingEditor editor) {
-    return drawingFacade.createDrawing(editor, this.game);
+	  BreakthroughPieceFactory factory = new BreakthroughPieceFactory(game);
+	  ChessBoardPositioningStrategy strategy = new ChessBoardPositioningStrategy();
+	  return drawingFacade.createDrawing(factory, strategy, null);
   }
 
   @Override

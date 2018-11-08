@@ -1,4 +1,4 @@
-package minidraw.boardgame.BoardDrawing.ss;
+package demo.breakthrough;
 
 /**
  * Collection of global constants. 
