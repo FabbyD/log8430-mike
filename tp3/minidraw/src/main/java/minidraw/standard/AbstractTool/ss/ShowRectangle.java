@@ -8,9 +8,8 @@ import javax.swing.*;
 import minidraw.framework.*;
 import minidraw.framework.DrawingEditor.ss.Drawing;
 import minidraw.framework.DrawingEditor.ss.DrawingEditor;
+import minidraw.framework.DrawingEditor.ss.DrawingEditorFacade;
 import minidraw.framework.DrawingEditor.ss.DrawingView;
-import minidraw.framework.DrawingEditor.ss.SelectionTool;
-import minidraw.framework.DrawingEditor.ss.StandardDrawingView;
 import minidraw.framework.DrawingEditor.ss.Tool;
 import minidraw.framework.Factory.ss.Factory;
 import minidraw.framework.Factory.ss.FactoryFacade;
@@ -28,11 +27,15 @@ import minidraw.standard.*;
 public class ShowRectangle {
 
   public static void main(String[] args) {
+
+	DrawingEditorFacade drawingFacade = new DrawingEditorFacade();
     FactoryFacade facade = new FactoryFacade(new EmptyCanvasFactory());
     DrawingEditor window = facade.createMiniDraw(
         "Create and move rectangles - use the mouse");
+//    Tool rectangleDrawTool = new RectangleTool(window),
+//        selectionTool = new SelectionTool(window);
     Tool rectangleDrawTool = new RectangleTool(window),
-        selectionTool = new SelectionTool(window);
+            selectionTool = drawingFacade.createSelectionTool(window);
     addToolSelectMenusToWindow(window, rectangleDrawTool, selectionTool);
     window.open();
 
@@ -89,9 +92,12 @@ public class ShowRectangle {
 
 class EmptyCanvasFactory implements Factory {
 
+	private DrawingEditorFacade drawingFacade;
   @Override
   public DrawingView createDrawingView(DrawingEditor editor) {
-    return new StandardDrawingView(editor, new Dimension(400, 200));
+//    return new StandardDrawingView(editor, new Dimension(400, 200));
+	  return drawingFacade.createStandardDrawingView(editor, new Dimension(400, 200));
+
   }
 
   @Override
