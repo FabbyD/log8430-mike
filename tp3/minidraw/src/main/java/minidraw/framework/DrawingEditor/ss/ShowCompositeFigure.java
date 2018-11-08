@@ -6,9 +6,9 @@ import minidraw.framework.*;
 import minidraw.framework.Factory.ss.ChessBackgroundFactory;
 import minidraw.framework.Factory.ss.FactoryFacade;
 import minidraw.framework.Factory.ss.MiniDrawApplication;
+import minidraw.framework.Figure.ss.FigureFacade;
 import minidraw.framework.Figure.ss.CompositeFigure;
 import minidraw.framework.Figure.ss.Figure;
-import minidraw.framework.Figure.ss.GroupFigure;
 import minidraw.standard.*;
 
 /**
@@ -27,7 +27,8 @@ public class ShowCompositeFigure {
     Figure blackPawn = new ImageFigure("bpawn",
         new Point(14 + 4 * 40, 14 + 1 * 40));
 
-    CompositeFigure composite = new GroupFigure();
+    FigureFacade ffacade = new FigureFacade();
+    CompositeFigure composite = ffacade.createGroupFigure();
 
     composite.add(blackKing);
     composite.add(blackPawn);
