@@ -28,12 +28,10 @@ public class ShowRectangle {
 
   public static void main(String[] args) {
 
-	DrawingEditorFacade drawingFacade = new DrawingEditorFacade();
+	DrawingEditorFacade<Object> drawingFacade = new DrawingEditorFacade<>();
     FactoryFacade facade = new FactoryFacade(new EmptyCanvasFactory());
     DrawingEditor window = facade.createMiniDraw(
         "Create and move rectangles - use the mouse");
-//    Tool rectangleDrawTool = new RectangleTool(window),
-//        selectionTool = new SelectionTool(window);
     Tool rectangleDrawTool = new RectangleTool(window),
             selectionTool = drawingFacade.createSelectionTool(window);
     addToolSelectMenusToWindow(window, rectangleDrawTool, selectionTool);
