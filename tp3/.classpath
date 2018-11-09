@@ -3,5 +3,11 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="minidraw/src/main/java"/>
 	<classpathentry kind="src" path="demo/src/main/java"/>
+	<classpathentry kind="lib" path="lib/abstractTool.jar"/>
+	<classpathentry kind="lib" path="lib/boardDrawing.jar"/>
+	<classpathentry kind="lib" path="lib/drawingChange.jar"/>
+	<classpathentry kind="lib" path="lib/drawingEditor.jar"/>
+	<classpathentry kind="lib" path="lib/factory.jar"/>
+	<classpathentry kind="lib" path="lib/figure.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
