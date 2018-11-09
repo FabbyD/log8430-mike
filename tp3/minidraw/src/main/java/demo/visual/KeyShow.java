@@ -1,10 +1,10 @@
-package minidraw.framework.Factory.ss;
+package demo.visual;
 
 import java.awt.event.KeyEvent;
 
 import minidraw.framework.DrawingEditor.ss.DrawingEditor;
 import minidraw.framework.DrawingEditor.ss.NullTool;
-import minidraw.standard.*;
+import minidraw.framework.Factory.ss.FactoryFacade;
 
 /**
  * Display key events in the status message field.
@@ -13,12 +13,10 @@ import minidraw.standard.*;
 public class KeyShow {
 
   public static void main(String[] args) {
-    DrawingEditor window = new MiniDrawApplication(
-        "See key presses on the status bar (mouse click first)",
-        new ChessBackgroundTextFieldFactory());
-    window.open();
-
-    window.setTool(new DisplayKeyTool(window));
+	  FactoryFacade facade = new FactoryFacade(new ChessBackgroundTextFieldFactory());
+	  DrawingEditor window = facade.createMiniDraw("See key presses on the status bar (mouse click first)");
+	  window.open();
+	  window.setTool(new DisplayKeyTool(window));
 
   }
 }

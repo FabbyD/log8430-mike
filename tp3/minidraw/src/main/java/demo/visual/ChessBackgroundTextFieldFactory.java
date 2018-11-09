@@ -1,9 +1,9 @@
-package minidraw.framework.Factory.ss;
+package demo.visual;
 
 import javax.swing.JTextField;
 
 import minidraw.framework.DrawingEditor.ss.DrawingEditor;
-import minidraw.framework.Factory.ss.ChessBackgroundFactory;
+
 
 /**
  * A factory that creates the status line as well.

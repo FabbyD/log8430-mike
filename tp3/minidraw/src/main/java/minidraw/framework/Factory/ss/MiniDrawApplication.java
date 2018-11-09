@@ -72,6 +72,8 @@ public class MiniDrawApplication extends JFrame implements DrawingEditor {
       // Ignore exceptions as they just mean
       // we run with the defaults
     }
+    
+    drawingFacade = new DrawingEditorFacade(); 
 
 //    fImageManager = new ImageManager(this);
     fImageManager = drawingFacade.createImageManager(this);

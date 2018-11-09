@@ -79,11 +79,8 @@ class GameStub implements Game {
   }
 
   private BoardGameObserver<Position> observer;
-  
-  private BoardDrawingFacade boardDrawingFacade;
 
   public void addObserver(BoardGameObserver<Position> observer) {
-	  this.boardDrawingFacade = new BoardDrawingFacade();
     this.observer = observer;
   }
 }

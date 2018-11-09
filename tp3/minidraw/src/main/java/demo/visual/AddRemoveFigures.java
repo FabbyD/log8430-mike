@@ -1,12 +1,11 @@
-package minidraw.framework.Factory.ss;
+package demo.visual;
 
-import java.awt.Point;
 import java.awt.event.MouseEvent;
 
 import minidraw.framework.DrawingEditor.ss.DrawingEditor;
 import minidraw.framework.DrawingEditor.ss.DrawingEditorFacade;
-import minidraw.framework.DrawingEditor.ss.ImageFigure;
 import minidraw.framework.DrawingEditor.ss.NullTool;
+import minidraw.framework.Factory.ss.FactoryFacade;
 import minidraw.framework.Figure.ss.Figure;
 
 /**
@@ -17,18 +16,17 @@ import minidraw.framework.Figure.ss.Figure;
 public class AddRemoveFigures {
 
   public static void main(String[] args) {
-    DrawingEditor window = new MiniDrawApplication(
-        "Add + Remove figures: Click for action", new ChessBackgroundFactory());
-    window.open();
-
-    window.setTool(new AddRemoveTool(window));
+	  FactoryFacade facade = new FactoryFacade(new ChessBackgroundFactory());
+	  DrawingEditor window = facade.createMiniDraw("Add + Remove figures: Click for action");
+	  window.open();
+	  window.setTool(new AddRemoveTool(window));
   }
 }
 
 class AddRemoveTool extends NullTool {
   private DrawingEditor editor;
   Figure[] list;
-  private DrawingEditorFacade drawingFacade;
+  private DrawingEditorFacade<Empty> drawingFacade;
 
   public AddRemoveTool(DrawingEditor e) {
     editor = e;
@@ -53,5 +51,9 @@ class AddRemoveTool extends NullTool {
     if (tick == 12) {
       tick = 0;
     }
+  }
+  
+  class Empty {
+	  
   }
 }

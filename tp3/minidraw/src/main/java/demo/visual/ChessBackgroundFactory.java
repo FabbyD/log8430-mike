@@ -1,37 +1,39 @@
-package minidraw.framework.Factory.ss;
+package demo.visual;
 
 import javax.swing.JTextField;
 
-import minidraw.framework.*;
 import minidraw.framework.DrawingEditor.ss.Drawing;
 import minidraw.framework.DrawingEditor.ss.DrawingEditor;
 import minidraw.framework.DrawingEditor.ss.DrawingEditorFacade;
 import minidraw.framework.DrawingEditor.ss.DrawingView;
-import minidraw.framework.Figure.ss.StandardDrawing;
-import minidraw.standard.*;
+import minidraw.framework.Factory.ss.Factory;
+import minidraw.framework.Figure.ss.FigureFacade;
 
 /**
  * A factory just for testing purposes. Defines a chess board background. 
 
  */
-public class ChessBackgroundFactory implements Factory {
-
+class ChessBackgroundFactory implements Factory {
 	
-	private DrawingEditorFacade drawingFacade;
+	private FigureFacade figureFacade = new FigureFacade();
+	private DrawingEditorFacade<Empty> drawingEditorFacade = new DrawingEditorFacade<>();
+	
   @Override
   public DrawingView createDrawingView(DrawingEditor editor) {
-//    DrawingView view = new StdViewWithBackground(editor, "chessboard");
-	  DrawingView view = drawingFacade.createDrawingView(editor, "chessboard");
-    return view;
+    return drawingEditorFacade.createDrawingView(editor, "chessboard");
   }
 
   @Override
   public Drawing createDrawing(DrawingEditor editor) {
-    return new StandardDrawing();
+    return figureFacade.createDrawing();
   }
 
   @Override
   public JTextField createStatusField(DrawingEditor editor) {
     return null;
+  }
+  
+  class Empty {
+	  
   }
 }

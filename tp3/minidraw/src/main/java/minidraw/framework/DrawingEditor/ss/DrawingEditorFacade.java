@@ -33,6 +33,8 @@ public class DrawingEditorFacade<LOCATION> {
 		return new ImageFigure(
 				"bpawn", new Point(14 + tick * 40, 14 + tick * 40));
 	}
+	
+	
 
 	public ImageManager createImageManager(MiniDrawApplication miniDrawApplication) {
 		// TODO Auto-generated method stub
@@ -50,6 +52,11 @@ public class DrawingEditorFacade<LOCATION> {
 	public DrawingView createStandardDrawingView(DrawingEditor editor, Dimension dimension) {
 		// TODO Auto-generated method stub
 		return new StandardDrawingView(editor, dimension);
+	}
+
+	public ImageFigure createImageFigure(String string, Point point) {
+		// TODO Auto-generated method stub
+		return new ImageFigure(string, point);
 	}
 
 }

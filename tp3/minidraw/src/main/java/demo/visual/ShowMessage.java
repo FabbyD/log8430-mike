@@ -1,10 +1,10 @@
-package minidraw.framework.Factory.ss;
+package demo.visual;
 
 import java.awt.event.MouseEvent;
 
 import minidraw.framework.DrawingEditor.ss.DrawingEditor;
 import minidraw.framework.DrawingEditor.ss.NullTool;
-import minidraw.standard.*;
+import minidraw.framework.Factory.ss.FactoryFacade;
 
 /**
  * Demonstrate different messages in the status bar.
@@ -13,11 +13,14 @@ import minidraw.standard.*;
 public class ShowMessage {
 
   public static void main(String[] args) {
-    DrawingEditor window = new MiniDrawApplication(
-        "Click to see messages in status field", new ChessBackgroundTextFieldFactory());
-    window.open();
+	  
+	  	FactoryFacade facade = new FactoryFacade(new ChessBackgroundTextFieldFactory());
+	  
+	    DrawingEditor window = facade.createMiniDraw(
+	        "Click to see messages in status field");
+	    window.open();
 
-    window.setTool(new DisplayMessageTool(window));
+	    window.setTool(new DisplayMessageTool(window));
   }
 }
 
