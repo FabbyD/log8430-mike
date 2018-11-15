@@ -1,12 +1,16 @@
 package minidraw.framework.Factory.ss;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Container;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.UIManager;
 
-import minidraw.framework.*;
 import minidraw.framework.DrawingEditor.ss.Drawing;
 import minidraw.framework.DrawingEditor.ss.DrawingEditor;
+import minidraw.framework.DrawingEditor.ss.DrawingEditorFacade;
 import minidraw.framework.DrawingEditor.ss.DrawingView;
 import minidraw.framework.DrawingEditor.ss.ImageManager;
 import minidraw.framework.DrawingEditor.ss.NullTool;
@@ -45,6 +49,11 @@ public class MiniDrawApplication extends JFrame implements DrawingEditor {
   /** the status field */
   protected JTextField statusField;
 
+  
+  /** the facade to access classes of DrawingEditor package*/
+  private DrawingEditorFacade drawingFacade;
+  
+  
   /**
    * Construct a minidraw editor that also acts as the JFrame application
    * window.
@@ -64,11 +73,12 @@ public class MiniDrawApplication extends JFrame implements DrawingEditor {
       // we run with the defaults
     }
 
-    fImageManager = new ImageManager(this);
+//    fImageManager = new ImageManager(this);
+    fImageManager = drawingFacade.createImageManager(this);
 
     // create the (default) controller in MVC
-    fTool = new NullTool();
-
+//    fTool = new NullTool();
+    fTool = drawingFacade.createNullTool();
     factory = f;
 
     setLocation(100, 20);

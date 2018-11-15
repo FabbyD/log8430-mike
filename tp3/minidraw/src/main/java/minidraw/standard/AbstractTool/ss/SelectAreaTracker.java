@@ -3,7 +3,6 @@ package minidraw.standard.AbstractTool.ss;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
-import minidraw.framework.*;
 import minidraw.framework.DrawingEditor.ss.DrawingEditor;
 import minidraw.framework.DrawingEditor.ss.DrawingView;
 
