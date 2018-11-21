@@ -1,26 +1,27 @@
-import sys
-
-from flask import Flask
-from operator import add
+# Creating PySpark session
+from pyspark import SparkConf
 from pyspark.sql import SparkSession
 
-spark = SparkSession\
-    .builder\
-    .appName("PythonWordCount")\
+conf = SparkConf() \
+        .setAppName("TP4") \
+        .set("spark.mongodb.input.uri", "mongodb://127.0.0.1/tp4.factures") \
+        .set("spark.mongodb.output.uri", "mongodb://127.0.0.1/tp4.factures") \
+        .set("spark.jars.packages", "org.mongodb.spark:mongo-spark-connector_2.11:2.3.1")
+
+spark = SparkSession \
+    .builder \
+    .config(conf=conf) \
     .getOrCreate()
 
-app = Flask(__name__)
+# Load the MongoDB collection dataframe
+df = spark.read.format("com.mongodb.spark.sql.DefaultSource").load()
 
+# Start REST server
+from flask import Flask, jsonify
+app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def hello_world():
-    filename = "foo.txt"
-    lines = spark.read.text(filename).rdd.map(lambda r: r[0])
-    counts = lines.flatMap(lambda x: x.split(' ')) \
-                  .map(lambda x: (x, 1)) \
-                  .reduceByKey(add)
-    output = counts.collect()
-    result = 0
-    for (word, count) in output:
-        result += count
-    return "There are %d words" % result
+    rows = df.select("*")
+    products = rows.rdd.map(lambda x: x.produits).first()
+    return jsonify(products)
