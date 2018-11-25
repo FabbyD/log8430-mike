@@ -1,6 +1,7 @@
 # Creating PySpark session
 from pyspark import SparkConf
 from pyspark.sql import SparkSession
+from pyspark.mllib.fpm import FPGrowth
 
 conf = SparkConf() \
         .setAppName("TP4") \
@@ -33,9 +34,11 @@ class Facture:
 
 @app.route('/', methods=['GET'])
 def chercher_produits():
-    rows = df.select("*")
-    products = rows.rdd.map(lambda x: x.produits).first()
-    return jsonify(products)
+    products = df.rdd.map(lambda x : x.produits)
+    model = FPGrowth.train(products, minSupport=0.4, numPartitions=5)
+    result = model.freqItemsets().flatMap(lambda itemset : itemset.items).collect()
+    print("Frequent items: %s" % str(result))
+    return jsonify(result)
 
 @app.route('/', methods=['POST'])
 def sauvegarder_facture():
